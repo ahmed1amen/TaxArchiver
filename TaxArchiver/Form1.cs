@@ -125,22 +125,11 @@ namespace TaxArchiver
 
 
 
-
             this.textBox2.Text = string.Concat(this._totalPaiement);
         }
 
 
-        }
-
-<<<<<<<<< Temporary merge branch 1
-        private void Form1_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-=========
-        
->>>>>>>>> Temporary merge branch 2
+   
         private void button2_Click(object sender, EventArgs e)
         {
             this.textBox4.Text = string.Concat(Convert.ToDecimal(this.textBox2.Text) - Convert.ToDecimal(this.textBox3.Text));
