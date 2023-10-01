@@ -130,33 +130,18 @@ namespace TaxArchiver
         }
 
 
-        private void ArchiveFactureGUI_Load(object sender, EventArgs e)
-        {
         }
 
-
-
-
-        private void button13_Click(object sender, EventArgs e)
+<<<<<<<<< Temporary merge branch 1
+        private void Form1_Load_1(object sender, EventArgs e)
         {
-            base.Close();
+
         }
 
-
-        private void button15_Click(object sender, EventArgs e)
-        {
-            foreach (object obj in this.listView1.Items)
-            {
-                ListViewItem listViewItem = (ListViewItem)obj;
-                if (listViewItem.Checked)
-                {
-                   // listViewItem.SubItems[5].Text;
-                }
-            }
-        }
-
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
+=========
+        
+>>>>>>>>> Temporary merge branch 2
+        private void button2_Click(object sender, EventArgs e)
         {
             this.textBox4.Text = string.Concat(Convert.ToDecimal(this.textBox2.Text) - Convert.ToDecimal(this.textBox3.Text));
         }

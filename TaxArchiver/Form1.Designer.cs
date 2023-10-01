@@ -334,6 +334,7 @@ namespace TaxArchiver
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ArchiveFactureGUI";
             this.Load += new System.EventHandler(this.Form1_Load);
+>>>>>>>>> Temporary merge branch 2
             this.ResumeLayout(false);
             this.PerformLayout();
 
