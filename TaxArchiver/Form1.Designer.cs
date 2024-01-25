@@ -37,11 +37,10 @@ namespace TaxArchiver
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button13 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Facture = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Table = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Serveurcol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button15 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -57,6 +56,8 @@ namespace TaxArchiver
             this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.lbl_result = new System.Windows.Forms.Label();
+            this.Utilisateur = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Montant = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // button13
@@ -79,15 +80,16 @@ namespace TaxArchiver
             this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.CheckBoxes = true;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader4,
-            this.columnHeader6,
-            this.columnHeader7});
+            this.Facture,
+            this.Table,
+            this.Utilisateur,
+            this.Serveurcol,
+            this.Montant,
+            this.Date});
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(8, 68);
+            this.listView1.Location = new System.Drawing.Point(8, 69);
             this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(1016, 455);
@@ -96,34 +98,28 @@ namespace TaxArchiver
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView1_ItemChecked);
             // 
-            // columnHeader1
+            // Facture
             // 
-            this.columnHeader1.Text = "Facture";
-            this.columnHeader1.Width = 200;
+            this.Facture.Text = "Facture";
+            this.Facture.Width = 94;
             // 
-            // columnHeader2
+            // Table
             // 
-            this.columnHeader2.Text = "Table";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 200;
+            this.Table.Text = "Table";
+            this.Table.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Table.Width = 200;
             // 
-            // columnHeader4
+            // Serveurcol
             // 
-            this.columnHeader4.Text = "Serveur";
-            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader4.Width = 200;
+            this.Serveurcol.Text = "Serveur";
+            this.Serveurcol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Serveurcol.Width = 200;
             // 
-            // columnHeader6
+            // Date
             // 
-            this.columnHeader6.Text = "service";
-            this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader6.Width = 200;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Date";
-            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader7.Width = 200;
+            this.Date.Text = "Date";
+            this.Date.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Date.Width = 164;
             // 
             // button15
             // 
@@ -139,7 +135,6 @@ namespace TaxArchiver
             this.button15.TabIndex = 91;
             this.button15.Text = "Supprimer";
             this.button15.UseVisualStyleBackColor = false;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // textBox2
             // 
@@ -302,6 +297,16 @@ namespace TaxArchiver
             this.lbl_result.TabIndex = 105;
             this.lbl_result.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // Utilisateur
+            // 
+            this.Utilisateur.Text = "Utilisateur";
+            this.Utilisateur.Width = 202;
+            // 
+            // Montant
+            // 
+            this.Montant.Text = "Montant";
+            this.Montant.Width = 140;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -334,7 +339,6 @@ namespace TaxArchiver
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ArchiveFactureGUI";
             this.Load += new System.EventHandler(this.Form1_Load);
->>>>>>>>> Temporary merge branch 2
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,20 +346,15 @@ namespace TaxArchiver
 
         #endregion
 
-
  
-        private decimal _totalPaiement;
-        private decimal _totalSelection;
-        private bool _first = true;
         private Control _lastActiveControl;
         private ListViewItem ligne;
         private Button button13;
         private ListView listView1;
-        private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
-        private ColumnHeader columnHeader4;
-        private ColumnHeader columnHeader6;
-        private ColumnHeader columnHeader7;
+        private ColumnHeader Facture;
+        private ColumnHeader Table;
+        private ColumnHeader Serveurcol;
+        private ColumnHeader Date;
         private Button button15;
         private TextBox textBox2;
         private Label label1;
@@ -371,6 +370,8 @@ namespace TaxArchiver
         private Label label6;
         private Button button1;
         private Label lbl_result;
+        private ColumnHeader Utilisateur;
+        private ColumnHeader Montant;
     }
 }
 

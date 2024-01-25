@@ -10,12 +10,21 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using TaxArchiver.DAL;
+using TaxArchiver.Models;
 
 namespace TaxArchiver
 {
     public partial class Form1 : Form
 
     {
+      
+        private List<Facture> _listFacture;
+        private FactureDAL _factureDAL;
+        private CategorieDAL _catgegorieDAL;
+        private decimal _totalPaiement;
+        private decimal _totalSelection;
+        private bool _first = true;
 
         public Form1()
         {
@@ -26,8 +35,9 @@ namespace TaxArchiver
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
            // string connstring = "Host=localhost;Port=5432;Username=postgres;Password=Admin****29311;Database=nv1";
-            string connstring = "Host=localhost;Port=5432;Username=postgres;Password=postgres;Database=nv1";
+            string connstring = "Host=localhost;Port=5432;Username=postgres;Password=Admin****29311;Database=postgres";
             npgsqlconn = new NpgsqlConnection(connstring);
         }
 
@@ -50,9 +60,6 @@ namespace TaxArchiver
                 npgsqlconn.Close();
         }
 
-
-
-
         private DataTable GetArchive(DateTime du, DateTime au)
         {
             DataTable dataTable = new DataTable();
@@ -63,7 +70,6 @@ namespace TaxArchiver
                 {
                     cmdNPGSQL.Connection = npgsqlconn;
                     cmdNPGSQL.CommandText = "SELECT * FROM archfacture WHERE datesystem <= @endDate AND datesystem >= @startDate ORDER BY id";
-
 
                     cmdNPGSQL.Parameters.Add(new NpgsqlParameter("@startDate", NpgsqlDbType.Date));
                     cmdNPGSQL.Parameters["@startDate"].Value = du;
@@ -89,7 +95,7 @@ namespace TaxArchiver
         {
             this.ligne = new ListViewItem(new string[]
             {
-       /*         string.Concat(l._id),
+       /*       string.Concat(l._id),
                 l._table ?? "",
                 l._utilisateur._login,
                 l._serveur,
@@ -105,7 +111,6 @@ namespace TaxArchiver
         {
             this.listView1.Items.Clear();
             this._totalPaiement = 0m;
-
 
             ListViewItem lvi = new ListViewItem();
             lvi.SubItems.Add("1");
@@ -123,12 +128,8 @@ namespace TaxArchiver
 
             }
 
-
-
             this.textBox2.Text = string.Concat(this._totalPaiement);
         }
-
-
    
         private void button2_Click(object sender, EventArgs e)
         {
@@ -152,6 +153,12 @@ namespace TaxArchiver
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            this._listFacture = new List<Facture>();
+            this._factureDAL = new FactureDAL(this.dateTimePicker1.Value, this.dateTimePicker2.Value, 0);
+            this._listFacture = FactureDAL.getFacture();
+
+
 
 
             DataTable dataTable = GetArchive(dateTimePicker1.Value, dateTimePicker2.Value);
@@ -178,6 +185,8 @@ namespace TaxArchiver
 
 
 
-        } 
+        }
+
+     
     }
 }
